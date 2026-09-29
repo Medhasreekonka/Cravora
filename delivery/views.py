@@ -47,7 +47,7 @@ def signin(request):
             Customer.objects.get(username=username, password=password)
 
             if username == 'admin':
-                return render('admin_dashboard')
+                return render(request, 'delivery/admin_dashboard.html')
             else:
                 return redirect('customer_home', username=username)
 
