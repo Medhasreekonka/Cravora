@@ -1,0 +1,91 @@
+{% extends 'delivery/base.html' %}
+
+
+{% block title %}
+Cravora | Admin
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="dashboard">
+
+
+    <div class="container">
+
+
+        <div class="dashboard-header">
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Manage restaurants and menus on Cravora.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-cards">
+
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    Add Restaurant
+                </h3>
+
+                <p>
+                    Add a new restaurant to Cravora.
+                </p>
+
+                <a href="{% url 'open_add_restaurant' %}"
+                   class="primary-button">
+
+                    Add Restaurant
+
+                </a>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    ◇
+                </div>
+
+                <h3>
+                    Restaurants
+                </h3>
+
+                <p>
+                    View and manage restaurants
+                    already added to Cravora.
+                </p>
+
+                <a href="{% url 'open_show_restaurant' %}"
+                   class="primary-button">
+
+                    View Restaurants
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'delivery/base.html' %}
+
+
+{% block title %}
+Cravora | Order
+{% endblock %}
+
+{% block content %}
+
+<section class="orders-page">
+    <div class="container">
+
+        <div class="orders-header">
+            <h1>Order Placed Successfully</h1>
+            <p>Thank you for ordering with Cravora, {{ username }}!</p>
+        </div>
+
+        <div class="order-card">
+
+            <div class="order-card-header">
+                <div>
+                    <span class="order-label">ORDER STATUS</span>
+                    <h2>✓ Order Confirmed</h2>
+                </div>
+
+                <div class="order-status">
+                    Preparing
+                </div>
+            </div>
+
+            <div class="order-divider"></div>
+
+            <h3>Order Items</h3>
+
+            <div class="order-items">
+
+                {% for item in cart_items %}
+
+                <div class="order-item">
+
+                    <img src="{{ item.picture }}"
+                         alt="{{ item.name }}">
+
+                    <div class="order-item-details">
+                        <h4>{{ item.name }}</h4>
+
+                        <p>{{ item.description }}</p>
+
+                        <span class="order-quantity">
+                            Quantity: {{ item.cart_quantity }}
+                        </span>
+                    </div>
+
+                    <div class="order-item-price">
+                        ₹{{ item.cart_total }}
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="order-divider"></div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>₹{{ subtotal }}</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Delivery Fee</span>
+                    <span>₹{{ delivery_fee }}</span>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-row total-row">
+                    <span>Total Paid</span>
+                    <strong>₹{{ total_price }}</strong>
+                </div>
+
+            </div>
+
+            <div class="delivery-info">
+                <h3>Delivery Address</h3>
+                <p>{{ customer.address }}</p>
+            </div>
+
+            <div class="order-actions">
+
+                <a href="{% url 'customer_home' username %}"
+                   class="secondary-button">
+                    ← Back to Restaurants
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

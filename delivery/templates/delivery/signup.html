@@ -1,0 +1,125 @@
+{% extends 'delivery/base.html' %}
+
+
+{% block title %}
+Cravora | Sign Up
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="auth-page">
+
+
+    <div class="auth-card">
+
+
+        <h1>
+            Create your account
+        </h1>
+
+
+        <p class="auth-description">
+            Join Cravora and discover something delicious.
+        </p>
+
+
+        <form action="{% url 'signup' %}"
+              method="post">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label>
+                    Username
+                </label>
+
+                <input type="text"
+                       name="username"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input type="password"
+                       name="password"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input type="email"
+                       name="email"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Mobile
+                </label>
+
+                <input type="text"
+                       name="mobile"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Address
+                </label>
+
+                <textarea name="address"
+                          required></textarea>
+
+            </div>
+
+
+            <button type="submit"
+                    class="submit-button">
+
+                Create Account
+
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            Already have an account?
+
+            <a href="{% url 'open_signin' %}">
+                Sign In
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endblock %}

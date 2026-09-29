@@ -1,0 +1,111 @@
+{% extends 'delivery/base.html' %}
+
+
+{% block title %}
+Cravora | Add Restaurant
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="form-page">
+
+
+    <div class="container">
+
+
+        <div class="form-card">
+
+
+            <h1>
+                Add Restaurant
+            </h1>
+
+
+            <p>
+                Add a new restaurant to Cravora.
+            </p>
+
+
+            <form action="{% url 'add_restaurant' %}"
+                  method="post">
+
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                    <label>
+                        Restaurant Name
+                    </label>
+
+                    <input type="text"
+                           name="name"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Picture URL
+                    </label>
+
+                    <input type="text"
+                           name="picture"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Cuisine
+                    </label>
+
+                    <input type="text"
+                           name="cuisine"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Rating
+                    </label>
+
+                    <input type="number"
+                           name="rating"
+                           min="0"
+                           max="5"
+                           step="0.5"
+                           required>
+
+                </div>
+
+
+                <button type="submit"
+                        class="submit-button">
+
+                    Add Restaurant
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

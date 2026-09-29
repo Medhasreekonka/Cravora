@@ -1,0 +1,64 @@
+{% extends 'delivery/base.html' %}
+
+{% block title %}
+Cravora | Profile
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-page">
+    <div class="container">
+
+        <div class="profile-card">
+
+            <div class="profile-icon">
+                {{ customer.username|first|upper }}
+            </div>
+
+            <h1>{{ customer.username }}</h1>
+            <p class="profile-subtitle">Cravora Customer</p>
+
+            <div class="profile-details">
+
+                <div class="profile-detail">
+                    <span>Username</span>
+                    <strong>{{ customer.username }}</strong>
+                </div>
+
+                <div class="profile-detail">
+                    <span>Email</span>
+                    <strong>{{ customer.email }}</strong>
+                </div>
+
+                <div class="profile-detail">
+                    <span>Mobile</span>
+                    <strong>{{ customer.mobile }}</strong>
+                </div>
+
+                <div class="profile-detail">
+                    <span>Address</span>
+                    <strong>{{ customer.address }}</strong>
+                </div>
+
+            </div>
+
+            <div class="profile-actions">
+
+                <a href="{% url 'customer_home' username %}"
+                   class="secondary-button">
+                    ← Restaurants
+                </a>
+
+                <a href="{% url 'logout' %}"
+                   class="primary-button">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

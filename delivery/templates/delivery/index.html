@@ -1,0 +1,86 @@
+{% extends 'delivery/base.html' %}
+{% block title %}
+Cravora | Home
+{% endblock %}
+{% block content %}
+<section class="hero container">
+    <div class="hero-content">
+        <span class="hero-badge">
+            Food ordering, beautifully simple
+        </span>
+        <h1>
+            Your cravings.
+            <br>
+            <span>Your way.</span>
+        </h1>
+        <p>
+            Welcome to Cravora — discover delicious food,
+            explore restaurants and enjoy a simple
+            food ordering experience.
+        </p>
+        <div class="hero-buttons">
+            <a href="{% url 'open_signup' %}"
+               class="primary-button">
+                Get Started
+            </a>
+            <a href="{% url 'open_signin' %}"
+               class="secondary-button">
+                Sign In
+            </a>
+        </div>
+    </div>
+    <div class="hero-image">
+        🍽️
+    </div>
+</section>
+<section class="features-section">
+    <div class="container">
+        <div class="section-heading">
+            <h2>
+                Everything you need
+            </h2>
+            <p>
+                A simple way to discover, choose and enjoy.
+            </p>
+        </div>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    ♡
+                </div>
+                <h3>
+                    Easy to use
+                </h3>
+                <p>
+                    Create your account and start
+                    exploring restaurants easily.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    ◇
+                </div>
+                <h3>
+                    Discover restaurants
+                </h3>
+                <p>
+                    Browse restaurants, cuisines,
+                    ratings and menus.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    ✓
+                </div>
+                <h3>
+                    Simple ordering
+                </h3>
+                <p>
+                    Add your favourite food to your
+                    cart and continue to checkout.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

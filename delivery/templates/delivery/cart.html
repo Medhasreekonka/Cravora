@@ -1,0 +1,191 @@
+{% extends 'delivery/base.html' %}
+
+{% block title %}
+Cravora | Cart
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+
+    <div class="container">
+
+        <div class="dashboard-header">
+            <h1>Your Cart</h1>
+            <p>Here are the items you've selected.</p>
+        </div>
+
+
+        <!-- CART ITEMS -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+
+                    {% for item in itemList %}
+
+                    <tr>
+
+                        <td>
+                            {{ item.name }}
+                        </td>
+
+
+                        <td>
+                            <img src="{{ item.picture }}"
+                                 alt="{{ item.name }}">
+                        </td>
+
+
+                        <td>
+                            {{ item.description }}
+                        </td>
+
+
+                        <td>
+                            ₹{{ item.price }}
+                        </td>
+
+
+                        <!-- QUANTITY -->
+
+                        <td>
+
+                            <div class="quantity-controls">
+
+                                <a href="{% url 'decrease_quantity' item.id username %}"
+                                   class="quantity-button">
+                                    −
+                                </a>
+
+                                <span class="quantity-number">
+                                    {{ item.cart_quantity }}
+                                </span>
+
+                                <a href="{% url 'increase_quantity' item.id username %}"
+                                   class="quantity-button">
+                                    +
+                                </a>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- ITEM TOTAL -->
+
+                        <td>
+                            ₹{{ item.cart_total }}
+                        </td>
+
+
+                        <!-- REMOVE -->
+
+                        <td>
+
+                            <a href="{% url 'remove_from_cart' item.id username %}"
+                               class="remove-button">
+                                Remove
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="7">
+                            Your cart is empty.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% if itemList %}
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="cart-summary">
+
+            <div class="order-summary">
+
+                <h3>Order Summary</h3>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>₹{{ subtotal }}</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Delivery Fee</span>
+                    <span>₹{{ delivery_fee }}</span>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-row total-row">
+                    <span>Total</span>
+                    <strong>₹{{ total_price }}</strong>
+                </div>
+
+            </div>
+
+            <div class="cart-actions">
+
+                <a href="{% url 'view_menu' restaurant.id username %}"
+                class="secondary-button">
+                    ← Back to Menu
+                </a>
+
+                <a href="{% url 'customer_home' username %}"
+                class="secondary-button">
+                    Restaurants
+                </a>
+
+                <a href="{% url 'clear_cart' username %}"
+                class="clear-cart-button">
+                    Clear Cart
+                </a>
+
+                <a href="{% url 'checkout' username %}"
+                class="primary-button">
+                    Checkout
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

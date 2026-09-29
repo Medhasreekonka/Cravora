@@ -1,0 +1,68 @@
+{% extends 'delivery/base.html' %}
+{% block title %}
+Cravora | Home
+{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>
+                Welcome, {{ username }}!
+            </h1>
+            <p>
+                Discover restaurants and find something
+                you'll love.
+            </p>
+        </div>
+
+        <form method="GET" class="restaurant-search">
+        <input
+            type="text"
+            name="search"
+            placeholder="Search restaurants or cuisine..."
+            value="{{ search }}"
+        >
+            <button type="submit" class="primary-button">Search</button>
+        </form>
+
+        <div class="restaurant-grid">
+            {% for r in restaurantList %}
+            <div class="restaurant-card">
+                <img src="{{ r.picture }}"
+                     alt="{{ r.name }}">
+                <div class="restaurant-details">
+                    <h3>
+                        {{ r.name }}
+                    </h3>
+                    <p class="restaurant-cuisine">
+                        {{ r.cuisine }}
+                    </p>
+                    <p class="restaurant-rating">
+                        ★ {{ r.rating }}/5
+                    </p>
+                    <div class="restaurant-actions">
+                        <a href="{% url 'view_menu' r.id username %}">
+                            View Menu
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="feature-card">
+                <div class="feature-icon">
+                    ♡
+                </div>
+                <h3>
+                    No restaurants yet
+                </h3>
+                <p>
+                    Restaurants will appear here once
+                    they are added.
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}Cravora{% endblock %}
+    </title>
+    <link rel="stylesheet"
+          href="{% static 'styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">
+            Cravora
+        </a>
+        <div class="nav-links">
+            {% if username %}
+                <a href="{% url 'profile' username %}" class="nav-link">
+                    Profile
+                </a>
+                <a href="{% url 'show_cart' username %}" class="nav-link">
+                    Cart
+                </a>
+                <a href="{% url 'logout' %}" class="nav-button">
+                    Logout
+                </a>
+            {% else %}
+                <a href="{% url 'open_signin' %}" class="nav-link">
+                    Sign In
+                </a>
+                <a href="{% url 'open_signup' %}" class="nav-button">
+                    Sign Up
+                </a>
+            {% endif %}
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <footer class="footer">
+        Cravora · Crave. Click. Enjoy.
+    </footer>
+</body>
+</html>

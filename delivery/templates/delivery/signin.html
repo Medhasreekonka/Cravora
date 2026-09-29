@@ -1,0 +1,87 @@
+{% extends 'delivery/base.html' %}
+
+
+{% block title %}
+Cravora | Sign In
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="auth-page">
+
+
+    <div class="auth-card">
+
+
+        <h1>
+            Welcome back
+        </h1>
+
+
+        <p class="auth-description">
+            Sign in to continue to Cravora.
+        </p>
+
+
+        <form action="{% url 'signin' %}"
+              method="post">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label>
+                    Username
+                </label>
+
+                <input type="text"
+                       name="username"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input type="password"
+                       name="password"
+                       required>
+
+            </div>
+
+
+            <button type="submit"
+                    class="submit-button">
+
+                Sign In
+
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            Don't have an account?
+
+            <a href="{% url 'open_signup' %}">
+                Sign Up
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endblock %}

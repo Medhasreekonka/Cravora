@@ -1,0 +1,244 @@
+{% extends 'delivery/base.html' %}
+
+
+{% block title %}
+Cravora | Manage Menu
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="dashboard">
+
+
+    <div class="container">
+
+
+        <div class="menu-header">
+
+            <h1>
+                Manage Menu
+            </h1>
+
+            <p>
+                Manage menu items for {{ restaurant.name }}.
+            </p>
+
+        </div>
+
+
+        <!-- EXISTING MENU ITEMS -->
+
+        <div class="table-container">
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Item
+                        </th>
+
+                        <th>
+                            Picture
+                        </th>
+
+                        <th>
+                            Description
+                        </th>
+
+                        <th>
+                            Price
+                        </th>
+
+                        <th>
+                            Vegetarian
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% for item in itemList %}
+
+
+                    <tr>
+
+                        <td>
+                            {{ item.name }}
+                        </td>
+
+
+                        <td>
+
+                            <img src="{{ item.picture }}"
+                                 alt="{{ item.name }}">
+
+                        </td>
+
+
+                        <td>
+                            {{ item.description }}
+                        </td>
+
+
+                        <td>
+                            ₹{{ item.price }}
+                        </td>
+
+
+                        <td>
+                            {% if item.vegeterian %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </td>
+
+
+                    </tr>
+
+
+                    {% empty %}
+
+
+                    <tr>
+
+                        <td colspan="5">
+                            No menu items added yet.
+                        </td>
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+
+        <br><br>
+
+
+        <!-- ADD MENU ITEM -->
+
+        <div class="form-card">
+
+
+            <h1>
+                Add Menu Item
+            </h1>
+
+
+            <p>
+                Add a new food item to {{ restaurant.name }}.
+            </p>
+
+
+            <form action="{% url 'update_menu' restaurant.id %}"
+                  method="post">
+
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Item Name
+                    </label>
+
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea id="description"
+                              name="description"
+                              required></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="price">
+                        Price
+                    </label>
+
+                    <input type="number"
+                           id="price"
+                           name="price"
+                           step="0.01"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="picture">
+                        Image URL
+                    </label>
+
+                    <input type="url"
+                           id="picture"
+                           name="picture">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="vegeterian">
+                        Vegetarian
+                    </label>
+
+                    <input type="checkbox"
+                           id="vegeterian"
+                           name="vegeterian">
+
+                </div>
+
+
+                <button type="submit"
+                        class="submit-button">
+
+                    Add Menu Item
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

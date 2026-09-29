@@ -1,0 +1,115 @@
+{% extends 'delivery/base.html' %}
+
+
+{% block title %}
+Cravora | Edit Restaurant
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="form-page">
+
+
+    <div class="container">
+
+
+        <div class="form-card">
+
+
+            <h1>
+                Edit Restaurant
+            </h1>
+
+
+            <p>
+                Update the restaurant information.
+            </p>
+
+
+            <form action="{% url 'update_restaurant' restaurant.id %}"
+                  method="post">
+
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                    <label>
+                        Restaurant Name
+                    </label>
+
+                    <input type="text"
+                           name="name"
+                           value="{{ restaurant.name }}"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Picture URL
+                    </label>
+
+                    <input type="text"
+                           name="picture"
+                           value="{{ restaurant.picture }}"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Cuisine
+                    </label>
+
+                    <input type="text"
+                           name="cuisine"
+                           value="{{ restaurant.cuisine }}"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Rating
+                    </label>
+
+                    <input type="number"
+                           name="rating"
+                           min="0"
+                           max="5"
+                           step="0.5"
+                           value="{{ restaurant.rating }}"
+                           required>
+
+                </div>
+
+
+                <button type="submit"
+                        class="submit-button">
+
+                    Save Changes
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

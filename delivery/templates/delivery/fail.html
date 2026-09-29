@@ -1,0 +1,25 @@
+{% extends 'delivery/base.html' %}
+
+{% block title %}Cravora{% endblock %}
+
+{% block content %}
+
+<div class="notification-page">
+
+    <div class="notification-box">
+
+        <div class="notification-icon">!</div>
+
+        <h1>Can't Add This Item</h1>
+
+        <p>
+            {{ message }}
+        </p>
+
+        <a href="/" class="nav-button">Back to Home</a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'delivery/base.html' %}
+
+
+{% block title %}
+Cravora | Restaurants
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="dashboard">
+
+
+    <div class="container">
+
+
+        <div class="restaurant-header">
+
+
+            <div>
+
+                <h1>
+                    Restaurants
+                </h1>
+
+                <p>
+                    View and manage restaurants on Cravora.
+                </p>
+
+            </div>
+
+
+            <a href="{% url 'open_add_restaurant' %}"
+               class="primary-button">
+
+                + Add Restaurant
+
+            </a>
+
+
+        </div>
+
+
+        <div class="restaurant-grid">
+
+
+            {% for r in restaurantList %}
+
+
+            <div class="restaurant-card">
+
+
+                <img src="{{ r.picture }}"
+                     alt="{{ r.name }}">
+
+
+                <div class="restaurant-details">
+
+
+                    <h3>
+                        {{ r.name }}
+                    </h3>
+
+
+                    <p class="restaurant-cuisine">
+                        {{ r.cuisine }}
+                    </p>
+
+
+                    <p class="restaurant-rating">
+                        ★ {{ r.rating }}/5
+                    </p>
+
+
+                    <div class="restaurant-actions">
+
+
+                        <a href="{% url 'open_update_restaurant' r.id %}">
+                            Edit Restaurant
+                        </a>
+
+
+                        <a href="{% url 'delete_restaurant' r.id %}">
+                            Delete Restaurant
+                        </a>
+
+
+                        <a href="{% url 'open_update_menu' r.id %}">
+                            Manage Menu
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% empty %}
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    No Restaurants Yet
+                </h3>
+
+                <p>
+                    Add your first restaurant to Cravora.
+                </p>
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

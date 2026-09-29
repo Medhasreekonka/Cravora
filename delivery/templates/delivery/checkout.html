@@ -1,0 +1,96 @@
+{% extends 'delivery/base.html' %}
+{% block title %}
+Cravora | Checkout
+{% endblock %}
+
+{% block content %}
+<section class="form-page">
+    <div class="container">
+        <div class="checkout-navigation">
+            {% if restaurant %}
+            <a href="{% url 'view_menu' restaurant.id username %}"
+            class="secondary-button">
+                ← Back to Menu
+            </a>
+            {% endif %}
+            <a href="{% url 'show_cart' username %}"
+            class="secondary-button">
+                ← Back to Cart
+            </a>
+        </div>
+        <div class="checkout-delivery-estimate">
+            <span>🕐 Estimated delivery</span>
+            <strong>30–40 minutes</strong>
+        </div>
+        <div class="checkout-card">
+            <h1>Checkout</h1>
+            <p class="auth-description">
+                Review your order before payment.
+            </p>
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% else %}
+            <p>Welcome, {{ username }}</p>
+            <br>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>₹{{ item.price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="checkout-total">
+                Total: ₹{{ total_price }}
+            </div>
+            <button id="rzp-button"
+                    class="submit-button">
+                Pay Securely
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% if not error %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "{{ razorpay_key_id }}",
+    "amount": "{{ amount }}",
+    "currency": "INR",
+    "name": "Cravora",
+    "description": "Order Payment",
+    "order_id": "{{ order_id }}",
+    "handler": function (response) {
+        window.location.href =
+            "{% url 'orders' username %}";
+    },
+    "prefill": {
+        "name": "{{ username }}",
+        "email": "customer@example.com",
+        "contact": "9999999999"
+    },
+    "theme": {
+        "color": "#B85C72"
+    }
+};
+var rzp = new Razorpay(options);
+document.getElementById("rzp-button").onclick = function(e) {
+    rzp.open();
+    e.preventDefault();
+};
+</script>
+{% endif %}
+{% endblock %}

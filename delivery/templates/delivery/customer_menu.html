@@ -1,0 +1,145 @@
+{% extends 'delivery/base.html' %}
+
+{% block title %}
+Cravora | Menu
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+
+    <div class="container">
+
+        <!-- Restaurant Header -->
+        <div class="menu-header">
+
+            <h1>{{ restaurant.name }}</h1>
+
+            <p>
+                {{ restaurant.cuisine }}
+                · ★ {{ restaurant.rating }}/5
+            </p>
+
+            <div class="delivery-estimate">
+                🕐 Estimated delivery:
+                <strong>30–40 minutes</strong>
+            </div>
+
+            <div class="menu-navigation">
+
+                <a href="{% url 'customer_home' username %}"
+                   class="secondary-button">
+                    ← Back to Restaurants
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Cart Success Message -->
+        {% if cart_success %}
+        <div class="cart-toast success">
+            ✓ {{ cart_success }}
+        </div>
+        {% endif %}
+
+
+        <!-- Cart Error Message -->
+        {% if cart_error %}
+        <div class="cart-toast error">
+            {{ cart_error }}
+        </div>
+        {% endif %}
+
+
+        <!-- Menu Filters -->
+        <div class="menu-filters">
+
+            <a href="{% url 'view_menu' restaurant.id username %}"
+               class="filter-button">
+                All
+            </a>
+
+            <a href="{% url 'view_menu' restaurant.id username %}?type=veg"
+               class="filter-button">
+                🌿 Vegetarian
+            </a>
+
+            <a href="{% url 'view_menu' restaurant.id username %}?type=nonveg"
+               class="filter-button">
+                🍗 Non-Vegetarian
+            </a>
+
+        </div>
+
+
+        <!-- Menu Items -->
+        <div class="menu-grid">
+
+            {% for item in itemList %}
+
+            <div class="menu-card">
+
+                <!-- Food Image -->
+                <img src="{{ item.picture }}"
+                     alt="{{ item.name }}"
+                     class="menu-item-image">
+
+
+                <!-- Food Details -->
+                <div class="menu-card-content">
+
+                    <h3>
+                        {{ item.name }}
+                    </h3>
+
+                    <p class="menu-description">
+                        {{ item.description }}
+                    </p>
+
+                    <p class="menu-price">
+                        ₹{{ item.price }}
+                    </p>
+
+
+                    <!-- Food Type -->
+                    {% if item.vegeterian %}
+                        <p class="menu-type vegetarian">
+                            • Vegetarian
+                        </p>
+                    {% else %}
+                        <p class="menu-type non-vegetarian">
+                            • Non-Vegetarian
+                        </p>
+                    {% endif %}
+
+
+                    <!-- Add To Cart -->
+                    <a href="{% url 'add_to_cart' item.id username %}"
+                       class="primary-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="empty-menu">
+                <h3>No menu items found</h3>
+                <p>
+                    There are no items available for this category.
+                </p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

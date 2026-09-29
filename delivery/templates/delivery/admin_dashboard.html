@@ -1,0 +1,62 @@
+{% extends 'delivery/base.html' %}
+
+{% block title %}
+Cravora | Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-dashboard">
+    <div class="container">
+
+        <div class="dashboard-header">
+            <h1>Admin Dashboard</h1>
+            <p>Overview of your Cravora platform.</p>
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <span class="stat-icon">🍽️</span>
+                <h2>{{ restaurant_count }}</h2>
+                <p>Restaurants</p>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-icon">🍔</span>
+                <h2>{{ item_count }}</h2>
+                <p>Menu Items</p>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-icon">👥</span>
+                <h2>{{ customer_count }}</h2>
+                <p>Customers</p>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-icon">🛒</span>
+                <h2>{{ cart_count }}</h2>
+                <p>Active Carts</p>
+            </div>
+
+        </div>
+
+        <div class="admin-actions">
+
+            <a href="{% url 'open_add_restaurant' %}"
+               class="primary-button">
+                Add Restaurant
+            </a>
+
+            <a href="{% url 'open_show_restaurant' %}"
+               class="secondary-button">
+                Manage Restaurants
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

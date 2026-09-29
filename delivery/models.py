@@ -1,0 +1,40 @@
+from django.db import models
+
+# Create your models here.
+class Customer(models.Model):
+    username = models.CharField(max_length = 20)
+    password = models.CharField(max_length = 20)
+    email = models.CharField(max_length = 20)
+    mobile = models.CharField(max_length = 10)
+    address = models.CharField(max_length = 50)
+    
+class Restaurant(models.Model):
+    name = models.CharField(max_length = 20)
+    picture = models.URLField(max_length = 200, default='data:image/png;base64,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')
+    cuisine = models.CharField(max_length = 200)
+    rating = models.FloatField()
+
+class Item(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete = models.CASCADE, related_name = "items")
+    name = models.CharField(max_length = 20)
+    description = models.CharField(max_length = 200)
+    price = models.FloatField()
+    vegeterian = models.BooleanField(default=False)
+    picture = models.URLField(max_length = 400, default='https://www.indiafilings.com/learn/wp-content/uploads/2024/08/How-to-Start-Food-Business.jpg')
+
+class Cart(models.Model):
+    customer = models.ForeignKey(Customer, on_delete = models.CASCADE, related_name = "cart")
+    items = models.ManyToManyField("Item", related_name = "carts")
+    quantities = models.JSONField(default=dict)
+
+    def total_price(self):
+        quantities = self.quantities or {}
+
+        total = 0
+
+        for item in self.items.all():
+            quantity = quantities.get(str(item.id), 1)
+            total += item.price * quantity
+
+        return total
+        
