@@ -79,3 +79,7 @@ Razorpay Payment
 Order Confirmation
    ↓
 Order History
+
+## ☁️ Deployment
+
+Deployed using **Render** with **Supabase PostgreSQL** as the production database.
