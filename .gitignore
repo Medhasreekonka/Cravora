@@ -4,3 +4,4 @@ myenv/
 __pycache__/
 *.pyc
 .vscode/
+delivery_data.json
